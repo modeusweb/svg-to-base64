@@ -7,6 +7,7 @@ function App() {
   const [isDragging, setIsDragging] = useState(false)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
+  const [walletCopied, setWalletCopied] = useState(false)
 
   const handleFileSelect = useCallback((file: File) => {
     setError('')
@@ -81,6 +82,16 @@ function App() {
     setBase64Url('')
     setError('')
     setCopied(false)
+  }, [])
+
+  const copyDonationAddress = useCallback(async () => {
+    try {
+      await navigator.clipboard.writeText('TQZxZ2Ygh6RvkZDi5qswq8uF9KbDbDw9bo')
+      setWalletCopied(true)
+      setTimeout(() => setWalletCopied(false), 2000)
+    } catch (err) {
+      setError('Error copying wallet address')
+    }
   }, [])
 
   return (
@@ -272,6 +283,57 @@ function App() {
               CSS rule with a live preview. Files up to 4MB are supported, and one click copies the
               result to your clipboard.
             </p>
+          </div>
+
+          {/* Donation */}
+          <div className="mt-12">
+            <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-8 text-center border border-purple-100 dark:border-purple-900/40 relative overflow-hidden">
+              <div className="absolute -top-10 -right-10 w-40 h-40 bg-purple-100 dark:bg-purple-900/40 rounded-full blur-3xl" aria-hidden="true" />
+              <div className="relative">
+                <div className="text-5xl mb-4 animate-pulse">
+                  <span role="img" aria-label="heart">💜</span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">
+                  Enjoying this tool?
+                </h3>
+                <p className="text-gray-600 dark:text-gray-300 leading-relaxed max-w-md mx-auto mb-6">
+                  SVG to Base64 is free and will always stay free. If it saved you
+                  some time, consider buying me a coffee — every little bit keeps
+                  this project running and improving. ☕
+                </p>
+                <div className="flex items-center justify-center gap-2 flex-wrap mb-6">
+                  <code className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-4 py-2.5 text-sm text-gray-700 dark:text-gray-300 font-mono select-all break-all">
+                    TQZxZ2Ygh6RvkZDi5qswq8uF9KbDbDw9bo
+                  </code>
+                  <button
+                    onClick={copyDonationAddress}
+                    className={`px-4 py-2.5 rounded-lg transition-colors flex items-center gap-2 text-sm cursor-pointer ${
+                      walletCopied
+                        ? 'bg-green-600 hover:bg-green-700 text-white'
+                        : 'bg-purple-600 hover:bg-purple-700 text-white'
+                    }`}
+                  >
+                    <svg
+                      className="w-4 h-4"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"
+                      />
+                    </svg>
+                    {walletCopied ? 'Copied!' : 'Copy'}
+                  </button>
+                </div>
+                <p className="text-gray-500 dark:text-gray-400 text-sm">
+                  Thank you with all my heart <span className="text-red-500" role="img" aria-label="heart">❤️</span>
+                </p>
+              </div>
+            </div>
           </div>
 
           {/* Footer */}
