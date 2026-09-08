@@ -111,13 +111,12 @@ Paste the copied CSS code into your stylesheet:
 ```
 svg-to-base64/
 ├── public/
-│   ├── favicon.svg
-│   └── icons.svg
+│   └── favicon.svg
 ├── src/
-│   ├── assets/
 │   ├── App.jsx          # Main application component
 │   ├── main.tsx         # Application entry point
-│   └── style.css        # Tailwind CSS imports
+│   ├── style.css        # Tailwind CSS imports
+│   └── vite-env.d.ts    # Vite client type declarations
 ├── index.html           # HTML template
 ├── package.json         # Dependencies and scripts
 ├── tailwind.config.js   # Tailwind configuration
