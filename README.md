@@ -131,6 +131,7 @@ svg-to-base64/
 - `npm run dev` - Start development server
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build locally
+- `npm run typecheck` - Run TypeScript type checking (strict mode)
 
 ### Adding New Features
 

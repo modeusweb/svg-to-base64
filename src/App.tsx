@@ -52,15 +52,16 @@ function App() {
     setIsDragging(false)
 
     const files = e.dataTransfer.files
-    if (files.length > 0) {
-      handleFileSelect(files[0])
+    const file = files[0]
+    if (file) {
+      handleFileSelect(file)
     }
   }, [handleFileSelect])
 
   const handleFileInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    const files = e.target.files
-    if (files && files.length > 0) {
-      handleFileSelect(files[0])
+    const file = e.target.files?.[0]
+    if (file) {
+      handleFileSelect(file)
     }
   }, [handleFileSelect])
 
@@ -79,6 +80,7 @@ function App() {
     setBase64Result('')
     setBase64Url('')
     setError('')
+    setCopied(false)
   }, [])
 
   return (
@@ -176,7 +178,7 @@ function App() {
                         {svgFile?.name}
                       </p>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        {(svgFile?.size / 1024).toFixed(2)} KB
+                        {(svgFile ? svgFile.size / 1024 : 0).toFixed(2)} KB
                       </p>
                     </div>
                   </div>
