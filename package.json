@@ -1,13 +1,24 @@
 {
   "name": "svg-to-base64",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "SVG to Base64 converter web application",
+  "main": "index.html",
   "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/modeusweb/svg-to-base64.git"
+  },
+  "author": "modeusweb",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/modeusweb/svg-to-base64/issues"
+  },
+  "homepage": "https://svg-to-base64.vercel.app/",
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
     "@types/react": "^19.2.18",
