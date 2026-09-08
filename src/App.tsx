@@ -27,7 +27,7 @@ function App() {
     reader.onload = (e) => {
       const result = e.target?.result
       const base64 = typeof result === 'string' ? result : ''
-      const cssValue = `background-image: url(${base64})`
+      const cssValue = `background-image: url(${base64});`
       setBase64Result(cssValue)
       setBase64Url(base64)
     }
