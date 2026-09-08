@@ -255,13 +255,13 @@ function App() {
           <div className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
             <p className="mb-4">Built with React + Vite + Tailwind CSS</p>
             <a
-              href="https://github.com/modeusweb"
+              href="https://github.com/modeusweb/svg-to-base64"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors text-gray-700 dark:text-gray-300"
             >
               <svg
-                className="w-5 h-5"
+                className="w-7 h-7"
                 fill="currentColor"
                 viewBox="0 0 24 24"
                 aria-hidden="true"
@@ -272,7 +272,6 @@ function App() {
                   clipRule="evenodd"
                 />
               </svg>
-              <span>modeusweb</span>
             </a>
           </div>
         </div>
