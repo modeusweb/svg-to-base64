@@ -113,7 +113,7 @@ svg-to-base64/
 ├── public/
 │   └── favicon.svg
 ├── src/
-│   ├── App.jsx          # Main application component
+│   ├── App.tsx          # Main application component
 │   ├── main.tsx         # Application entry point
 │   ├── style.css        # Tailwind CSS imports
 │   └── vite-env.d.ts    # Vite client type declarations

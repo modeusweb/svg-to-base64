@@ -1,18 +1,16 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, type ChangeEvent, type DragEvent } from 'react'
 
 function App() {
-  const [svgFile, setSvgFile] = useState(null)
+  const [svgFile, setSvgFile] = useState<File | null>(null)
   const [base64Result, setBase64Result] = useState('')
   const [base64Url, setBase64Url] = useState('')
   const [isDragging, setIsDragging] = useState(false)
   const [error, setError] = useState('')
   const [copied, setCopied] = useState(false)
 
-  const handleFileSelect = useCallback((file) => {
+  const handleFileSelect = useCallback((file: File) => {
     setError('')
-    
-    if (!file) return
-    
+
     if (file.type !== 'image/svg+xml' && !file.name.endsWith('.svg')) {
       setError('Please select an SVG file')
       return
@@ -24,10 +22,11 @@ function App() {
     }
 
     setSvgFile(file)
-    
+
     const reader = new FileReader()
     reader.onload = (e) => {
-      const base64 = e.target.result
+      const result = e.target?.result
+      const base64 = typeof result === 'string' ? result : ''
       const cssValue = `background-image: url(${base64})`
       setBase64Result(cssValue)
       setBase64Url(base64)
@@ -38,29 +37,29 @@ function App() {
     reader.readAsDataURL(file)
   }, [])
 
-  const handleDragOver = useCallback((e) => {
+  const handleDragOver = useCallback((e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     setIsDragging(true)
   }, [])
 
-  const handleDragLeave = useCallback((e) => {
+  const handleDragLeave = useCallback((e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     setIsDragging(false)
   }, [])
 
-  const handleDrop = useCallback((e) => {
+  const handleDrop = useCallback((e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
     setIsDragging(false)
-    
+
     const files = e.dataTransfer.files
     if (files.length > 0) {
       handleFileSelect(files[0])
     }
   }, [handleFileSelect])
 
-  const handleFileInputChange = useCallback((e) => {
+  const handleFileInputChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files
-    if (files.length > 0) {
+    if (files && files.length > 0) {
       handleFileSelect(files[0])
     }
   }, [handleFileSelect])
