@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://svg-to-base64.vercel.app/sitemap.xml

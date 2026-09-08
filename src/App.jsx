@@ -251,6 +251,28 @@ function App() {
             </div>
           )}
 
+          {/* SEO Content */}
+          <div className="mt-12">
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-white mb-4">
+              What is an SVG to Base64 Converter?
+            </h2>
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+              An SVG to base64 converter transforms Scalable Vector Graphics (SVG) files into
+              base64-encoded data URIs that can be used directly in CSS as{' '}
+              <code className="text-purple-600 dark:text-purple-400">background-image</code>{' '}
+              values. This eliminates extra HTTP requests and lets you embed icons and images
+              inline in your stylesheets — ideal for icon systems, CSS sprites, and performance
+              optimization.
+            </p>
+            <p className="text-gray-600 dark:text-gray-300 leading-relaxed mt-4">
+              Simply drag and drop an SVG file into the upload area above (or click to browse),
+              and the converter instantly generates the ready-to-paste{' '}
+              <code className="text-purple-600 dark:text-purple-400">data:image/svg+xml;base64,...</code>{' '}
+              CSS rule with a live preview. Files up to 4MB are supported, and one click copies the
+              result to your clipboard.
+            </p>
+          </div>
+
           {/* Footer */}
           <div className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
             <p className="mb-4">Built with React + Vite + Tailwind CSS</p>
