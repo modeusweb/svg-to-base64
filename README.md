@@ -6,6 +6,11 @@ A modern web application that converts SVG files to CSS background-image format 
 ![Vite](https://img.shields.io/badge/Vite-8.2.2-purple)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.0-38bdf8)
 
+
+## Demo
+
+Try the live version here: **[svg-to-base64.vercel.app](https://svg-to-base64.vercel.app/)**
+
 ## Features
 
 ### 🎯 Core Functionality
