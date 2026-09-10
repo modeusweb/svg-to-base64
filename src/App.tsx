@@ -253,7 +253,7 @@ function App() {
                   <img 
                     src={base64Url} 
                     alt="SVG Preview" 
-                    className="max-w-full max-h-full object-contain transition-transform"
+                    className="h-full max-w-full max-h-full object-contain transition-transform"
                     style={{ transform: `scale(${previewScale})` }}
                   />
                 </div>
