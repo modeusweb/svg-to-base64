@@ -1,10 +1,10 @@
 # SVG to Base64 Converter
 
-A modern web application that converts SVG files to CSS background-image format with base64 encoding. Built with React, Vite, and Tailwind CSS.
+A modern web application that converts SVG files to multiple output formats with base64 encoding. Built with React, Vite, and Tailwind CSS.
 
-![SVG to Base64 Converter](https://img.shields.io/badge/React-18.2.0-blue)
+![SVG to Base64 Converter](https://img.shields.io/badge/React-19.2.8-blue)
 ![Vite](https://img.shields.io/badge/Vite-8.2.2-purple)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4.0-38bdf8)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.3.3-38bdf8)
 
 
 ## Demo
@@ -16,14 +16,17 @@ Try the live version here: **[svg-to-base64.vercel.app](https://svg-to-base64.ve
 ### 🎯 Core Functionality
 - **Drag & Drop Upload**: Simply drag and drop SVG files into the upload zone
 - **Click to Upload**: Alternatively, click to select files from your computer
-- **Real-time Conversion**: Instant conversion of SVG to base64 encoded CSS
-- **CSS Output Format**: Generates clean `background-image: url(data:image/svg+xml;base64,...)` format
+- **Real-time Conversion**: Instant conversion of SVG to base64 encoded formats
+- **Multiple Output Formats**: 
+  - **Base64 String**: Raw base64 encoded data
+  - **CSS Background Image**: Clean `background-image: url(data:image/svg+xml;base64,...)` format
+  - **HTML img Code**: Ready-to-use `<img src="data:image/svg+xml;base64,...">` tag
 - **File Size Validation**: 4MB file size limit to ensure optimal performance
 
 ### 🎨 User Interface
-- **Modern Design**: Clean, intuitive interface with gradient backgrounds
+- **Modern Two-Column Layout**: Efficient use of screen space with side-by-side panels
 - **Dark Mode Support**: Automatic dark mode based on system preferences
-- **Responsive Layout**: Works seamlessly on desktop, tablet, and mobile devices
+- **Responsive Design**: Works seamlessly on desktop, tablet, and mobile devices
 - **Visual Feedback**: 
   - Button state changes when copying to clipboard
   - Hover effects on interactive elements
@@ -31,9 +34,13 @@ Try the live version here: **[svg-to-base64.vercel.app](https://svg-to-base64.ve
 - **File Information**: Displays file name and size after upload
 
 ### 🔧 Advanced Features
-- **Copy to Clipboard**: One-click copying of the generated CSS code
+- **Copy to Clipboard**: One-click copying of the generated code in any format
+- **Download Result**: Save the output as a text file
 - **Live Preview**: See your SVG rendered in real-time after conversion
-- **Select All**: CSS code field supports Ctrl+A for easy selection
+- **Preview Zoom**: Zoom in/out functionality for detailed inspection (25% - 300%)
+- **Format Minification**: Option to remove spaces from CSS output
+- **Format Tabs**: Easy switching between different output formats
+- **Select All**: Code field supports Ctrl+A for easy selection
 - **Error Handling**: Clear error messages for invalid files or size limits
 - **Reset Functionality**: Easy reset to upload a new file
 
@@ -75,19 +82,37 @@ The optimized production build will be in the `dist` directory.
 - **Click to Upload**: Click the upload zone and select your SVG file from the file dialog
 
 ### Step 2: Automatic Conversion
-The application automatically converts your SVG to base64 format and generates the CSS code.
+The application automatically converts your SVG to base64 format and displays the output in your selected format.
 
-### Step 3: Copy CSS Code
-- Click the "Copy" button to copy the generated CSS to your clipboard
+### Step 3: Choose Output Format
+Select from three available output formats:
+- **Base64 String**: Raw base64 encoded data (for use in data URIs, API responses, etc.)
+- **CSS Background Image**: Ready-to-use CSS with `background-image: url(...)` format
+- **HTML img Code**: Complete `<img src="...">` tag for direct HTML embedding
+
+### Step 4: Copy or Download
+- Click the "Copy" button to copy the generated code to your clipboard
 - The button will turn green and show "Copied!" to confirm successful copying
-- Alternatively, use Ctrl+A to select all text in the CSS field and copy manually
+- Alternatively, use Ctrl+A to select all text in the code field and copy manually
+- Click "Download" to save the output as a text file
 
-### Step 4: Use in Your Project
-Paste the copied CSS code into your stylesheet:
+### Step 5: Additional Options
+- **Zoom Preview**: Use the +/- buttons to zoom in/out of the SVG preview (25% - 300%)
+- **Minify CSS**: Check the "Minify CSS" option to remove spaces from CSS output
+- **Format Settings**: Toggle between different output formats using the tabs
+
+### Step 6: Use in Your Project
+
+**For CSS Background Image:**
 ```css
 .your-element {
   background-image: url(data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNiAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNy40OTk1MSAxOEwyOC40OTk1IDE4IiBzdHJva2U9IiM1MTkyOEQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTE4IDI4LjVMMTggNy41IiBzdHJva2U9IiM1MTkyOEQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+Cg==);
 }
+```
+
+**For HTML img Code:**
+```html
+<img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzYiIGhlaWdodD0iMzYiIHZpZXdCb3g9IjAgMCAzNiAzNiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cGF0aCBkPSJNNy40OTk1MSAxOEwyOC40OTk1IDE4IiBzdHJva2U9IiM1MTkyOEQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PHBhdGggZD0iTTE4IDI4LjVMMTggNy41IiBzdHJva2U9IiM1MTkyOEQiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIi8+PC9zdmc+Cg==" alt="">
 ```
 
 ## File Requirements
@@ -98,9 +123,9 @@ Paste the copied CSS code into your stylesheet:
 
 ## Technical Stack
 
-- **React 18.2.0**: Modern React with hooks
+- **React 19.2.8**: Modern React with hooks
 - **Vite 8.2.2**: Fast build tool and dev server
-- **Tailwind CSS 3.4.0**: Utility-first CSS framework
+- **Tailwind CSS 4.3.3**: Utility-first CSS framework
 - **TypeScript**: Type-safe development
 - **PostCSS**: CSS processing with @tailwindcss/postcss
 
