@@ -141,17 +141,39 @@ Select from three available output formats:
 ```
 svg-to-base64/
 ├── public/
-│   └── favicon.svg
+│   ├── favicon.svg          # Site favicon
+│   ├── robots.txt           # Search engine rules
+│   └── sitemap.xml          # Site sitemap
 ├── src/
-│   ├── App.tsx          # Main application component
-│   ├── main.tsx         # Application entry point
-│   ├── style.css        # Tailwind CSS imports
-│   └── vite-env.d.ts    # Vite client type declarations
-├── index.html           # HTML template
-├── package.json         # Dependencies and scripts
-├── tailwind.config.js   # Tailwind configuration
-├── tsconfig.json        # TypeScript configuration
-└── postcss.config.js    # PostCSS configuration
+│   ├── App.tsx              # App shell / composition root
+│   ├── main.tsx             # Application entry point
+│   ├── style.css            # Tailwind CSS imports
+│   ├── vite-env.d.ts        # Vite client type declarations
+│   ├── constants.ts         # Shared application constants
+│   ├── types/
+│   │   └── index.ts         # Shared TypeScript types (OutputFormat)
+│   ├── utils/
+│   │   └── svg.ts           # Pure SVG helpers: minify, base64, format
+│   ├── hooks/
+│   │   ├── useClipboard.ts      # Copy-to-clipboard with feedback state
+│   │   └── useSvgConverter.ts   # SVG conversion business logic
+│   └── components/
+│       ├── Header.tsx           # Page header
+│       ├── UploadZone.tsx       # Drag & drop + file input
+│       ├── ErrorMessage.tsx     # Error notification
+│       ├── PreviewCard.tsx      # SVG preview with zoom controls
+│       ├── FileInfoCard.tsx     # Uploaded file info + reset
+│       ├── FormatSettingsCard.tsx # Output settings (minify toggle)
+│       ├── ResultCard.tsx       # Output result, format tabs, copy/download
+│       ├── InfoSection.tsx      # Static SEO content
+│       ├── DonationCard.tsx     # Donation card with wallet address
+│       ├── Footer.tsx           # GitHub link
+│       └── icons.tsx            # Reusable inline SVG icons
+├── index.html               # HTML template
+├── package.json             # Dependencies and scripts
+├── tailwind.config.js       # Tailwind configuration
+├── tsconfig.json            # TypeScript configuration
+└── postcss.config.js        # PostCSS configuration
 ```
 
 ## Development

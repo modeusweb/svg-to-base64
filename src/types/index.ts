@@ -1,0 +1,1 @@
+export type OutputFormat = 'base64' | 'css' | 'html'
