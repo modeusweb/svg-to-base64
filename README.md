@@ -98,7 +98,7 @@ Select from three available output formats:
 
 ### Step 5: Additional Options
 - **Zoom Preview**: Use the +/- buttons to zoom in/out of the SVG preview (25% - 300%)
-- **Minify CSS**: Check the "Minify CSS" option to remove spaces from CSS output
+- **Minify SVG markup**: Check the "Minify SVG markup" option to collapse the SVG to a single line before encoding, producing a shorter base64 output
 - **Format Settings**: Toggle between different output formats using the tabs
 
 ### Step 6: Use in Your Project

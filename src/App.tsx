@@ -1,9 +1,66 @@
 import { useState, useCallback, type ChangeEvent, type DragEvent } from 'react'
 
+const ENCODER_ATTR_RE = /\s(sodipodi|inkscape|sketch|figma|xmlns:(?:sodipodi|inkscape|sketch|figma|serif|dc|cc|rdf))[^\s=]*(?:="[^"]*"|='[^']*')?/g
+
+/**
+ * Safely minifies SVG markup to a single line without breaking the icon.
+ * - removes XML declaration, doctype and comments
+ * - removes editor metadata (Inkscape, Sketch, Figma, Sodipodi)
+ * - removes <metadata> elements and empty groups
+ * - collapses whitespace between tags and trims attribute values
+ * - never touches tag names, attributes semantics or path data content
+ */
+function minifySvg(svg: string): string {
+  let result = svg
+
+  // Remove XML declaration and DOCTYPE
+  result = result.replace(/<\?xml[\s\S]*?\?>/gi, '')
+  result = result.replace(/<!DOCTYPE[\s\S]*?(?:>|\[[\s\S]*?\]>)/gi, '')
+  // Remove comments
+  result = result.replace(/<!--[\s\S]*?-->/g, '')
+
+  // Remove editor-specific attributes (namespace declarations included)
+  result = result.replace(ENCODER_ATTR_RE, ' ')
+
+  // Remove <metadata>...</metadata> blocks (safe, non-rendering)
+  result = result.replace(/<metadata[\s\S]*?<\/metadata\s*>/gi, '')
+
+  // Remove empty groups: <g ...></g> or <g .../>
+  for (let i = 0; i < 5; i++) {
+    const before = result
+    result = result.replace(/<g(?:\s[^>]*)?>\s*<\/g\s*>/gi, '')
+    result = result.replace(/<g(?:\s[^>]*)?\/>/gi, '')
+    if (result === before) break
+  }
+
+  // Collapse whitespace between tags, then all remaining whitespace runs
+  result = result.replace(/>\s+</g, '><')
+  result = result.replace(/\s{2,}/g, ' ')
+
+  // Trim whitespace inside attribute values (e.g. d=" M10 10 ..." )
+  result = result.replace(/=\s*("(\s*[^"]*\s*)"|'(\s*[^']*\s*)')/g, (_m, _q, dq, sq) => {
+    const value = (dq !== undefined ? dq : sq).trim()
+    return `="${value}"`
+  })
+
+  return result.trim()
+}
+
+function svgToBase64(svg: string): string {
+  const bytes = new TextEncoder().encode(svg)
+  let binary = ''
+  const chunk = 0x8000
+  for (let i = 0; i < bytes.length; i += chunk) {
+    binary += String.fromCharCode(...bytes.subarray(i, i + chunk))
+  }
+  return `data:image/svg+xml;base64,${btoa(binary)}`
+}
+
 type OutputFormat = 'base64' | 'css' | 'html'
 
 function App() {
   const [svgFile, setSvgFile] = useState<File | null>(null)
+  const [svgText, setSvgText] = useState('')
   const [base64Result, setBase64Result] = useState('')
   const [base64Url, setBase64Url] = useState('')
   const [isDragging, setIsDragging] = useState(false)
@@ -11,8 +68,15 @@ function App() {
   const [copied, setCopied] = useState(false)
   const [walletCopied, setWalletCopied] = useState(false)
   const [previewScale, setPreviewScale] = useState(1)
-  const [minify, setMinify] = useState(false)
+  const [minifySvgMarkup, setMinifySvgMarkup] = useState(true)
   const [outputFormat, setOutputFormat] = useState<OutputFormat>('css')
+
+  const encodeSvg = useCallback((text: string, shouldMinifyMarkup: boolean) => {
+    const source = shouldMinifyMarkup ? minifySvg(text) : text
+    const base64 = svgToBase64(source)
+    setBase64Url(base64)
+    updateOutputFormat(base64, outputFormat)
+  }, [outputFormat])
 
   const handleFileSelect = useCallback((file: File) => {
     setError('')
@@ -33,31 +97,30 @@ function App() {
     const reader = new FileReader()
     reader.onload = (e) => {
       const result = e.target?.result
-      const base64 = typeof result === 'string' ? result : ''
-      setBase64Url(base64)
-      updateOutputFormat(base64, outputFormat, minify)
+      if (typeof result !== 'string') {
+        setError('Error reading file')
+        return
+      }
+      setSvgText(result)
+      encodeSvg(result, minifySvgMarkup)
     }
     reader.onerror = () => {
       setError('Error reading file')
     }
-    reader.readAsDataURL(file)
-  }, [outputFormat, minify])
+    reader.readAsText(file, 'utf-8')
+  }, [encodeSvg, minifySvgMarkup])
 
-  const updateOutputFormat = useCallback((base64: string, format: OutputFormat, shouldMinify: boolean) => {
+  const updateOutputFormat = useCallback((base64: string, format: OutputFormat) => {
     let result = ''
     switch (format) {
       case 'base64':
         result = base64
         break
       case 'css':
-        result = shouldMinify 
-          ? `background-image:url(${base64});` 
-          : `background-image: url(${base64});`
+        result = `background-image: url(${base64});`
         break
       case 'html':
-        result = shouldMinify
-          ? `<img src="${base64}" alt="">`
-          : `<img src="${base64}" alt="">`
+        result = `<img src="${base64}" alt="">`
         break
     }
     setBase64Result(result)
@@ -66,9 +129,9 @@ function App() {
   const handleFormatChange = useCallback((format: OutputFormat) => {
     setOutputFormat(format)
     if (base64Url) {
-      updateOutputFormat(base64Url, format, minify)
+      updateOutputFormat(base64Url, format)
     }
-  }, [base64Url, minify, updateOutputFormat])
+  }, [base64Url, updateOutputFormat])
 
   const handleDragOver = useCallback((e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -110,6 +173,7 @@ function App() {
 
   const resetConverter = useCallback(() => {
     setSvgFile(null)
+    setSvgText('')
     setBase64Result('')
     setBase64Url('')
     setError('')
@@ -140,12 +204,12 @@ function App() {
     URL.revokeObjectURL(url)
   }, [base64Result, svgFile])
 
-  const updateFormat = useCallback((newMinify: boolean) => {
-    setMinify(newMinify)
-    if (base64Url) {
-      updateOutputFormat(base64Url, outputFormat, newMinify)
+  const updateSvgMarkupMinify = useCallback((newMinifyMarkup: boolean) => {
+    setMinifySvgMarkup(newMinifyMarkup)
+    if (svgText) {
+      encodeSvg(svgText, newMinifyMarkup)
     }
-  }, [base64Url, outputFormat, updateOutputFormat])
+  }, [svgText, encodeSvg])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900">
@@ -311,12 +375,12 @@ function App() {
                 <label className="flex items-center gap-2 cursor-pointer">
                   <input
                     type="checkbox"
-                    checked={minify}
-                    onChange={(e) => updateFormat(e.target.checked)}
+                    checked={minifySvgMarkup}
+                    onChange={(e) => updateSvgMarkupMinify(e.target.checked)}
                     className="w-4 h-4 text-purple-600 rounded focus:ring-purple-500 cursor-pointer"
                   />
                   <span className="text-sm text-gray-700 dark:text-gray-300">
-                    Minify CSS (remove spaces)
+                    Minify SVG markup (one line, shorter base64)
                   </span>
                 </label>
               </div>
