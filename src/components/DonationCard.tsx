@@ -26,6 +26,9 @@ export function DonationCard({ walletCopied, onCopyWallet }: DonationCardProps) 
             some time, consider buying me a coffee — every little bit keeps
             this project running and improving. ☕
           </p>
+          <p className="text-gray-500 dark:text-gray-400 text-xs mb-2">
+            USDT (TRC-20) wallet address
+          </p>
           <div className="flex items-center justify-center gap-2 flex-wrap mb-4">
             <code className="bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg px-3 py-2 text-xs text-gray-700 dark:text-gray-300 font-mono select-all break-all">
               {DONATION_WALLET_ADDRESS}

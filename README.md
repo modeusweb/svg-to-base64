@@ -226,3 +226,11 @@ Created with ❤️ using React, Vite, and Tailwind CSS
 - [React](https://react.dev/) - A JavaScript library for building user interfaces
 - [Vite](https://vitejs.dev/) - Next generation frontend tooling
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
+
+## Support This Project
+
+This tool is completely **free** and will always stay free. If it saved you some time and you'd like to support its development, consider buying me a coffee — every little bit helps keep this project running and improving. ☕
+
+**USDT (TRC-20):** `TQZxZ2Ygh6RvkZDi5qswq8uF9KbDbDw9bo`
+
+Thank you! 💜
