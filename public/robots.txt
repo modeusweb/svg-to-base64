@@ -10,9 +10,15 @@ User-agent: Bingbot
 Allow: /
 Disallow: /api/
 
+User-agent: Yandex
+Allow: /
+Disallow: /api/
+
 # Crawl-delay for all bots
 Crawl-delay: 1
 
+# Favicon location hint for search engines
+Favicon: /favicon.ico
+
 # Sitemap
 Sitemap: https://svg-to-base64.vercel.app/sitemap.xml
-

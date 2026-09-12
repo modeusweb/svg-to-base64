@@ -30,3 +30,6 @@ build/
 tsconfig.tsbuildinfo
 next-env.d.ts
 
+# Scripts (utility scripts, not part of the app)
+scripts/
+

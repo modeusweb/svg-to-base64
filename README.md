@@ -2,8 +2,8 @@
 
 A modern web application that converts SVG files to multiple output formats with base64 encoding. Built with React, Next.js, and Tailwind CSS.
 
-![React](https://img.shields.io/badge/React-19.0.0-blue)
-![Next.js](https://img.shields.io/badge/Next.js-15.5.25-black)
+![React](https://img.shields.io/badge/React-19.3.0-blue)
+![Next.js](https://img.shields.io/badge/Next.js-16.3.5-black)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0.0-38bdf8)
 
 
@@ -49,6 +49,7 @@ Try the live version here: **[svg-to-base64.vercel.app](https://svg-to-base64.ve
 - **SEO Optimized**: Complete meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
 - **Static Generation**: Pages are pre-rendered at build time for optimal performance
 - **Fast Loading**: Optimized production build with code splitting
+- **Favicon**: Complete icon set for all browsers and devices (ICO, SVG, PNG, Apple Touch)
 
 ## Installation
 
@@ -154,10 +155,15 @@ svg-to-base64/
 │   ├── layout.tsx              # Root layout with SEO metadata
 │   └── page.tsx                # Main page (client component)
 ├── public/
-│   ├── favicon.svg             # Site favicon
+│   ├── favicon.ico             # Legacy favicon (16x16, 32x32, 48x48)
+│   ├── favicon.svg             # Modern scalable favicon
+│   ├── favicon-180x180.png     # Apple Touch Icon
+│   ├── favicon-192x192.png     # PWA icon
+│   ├── favicon-512x512.png     # PWA icon
 │   ├── og-image.png            # Open Graph image
-│   ├── robots.txt              # Search engine rules
-│   └── sitemap.xml             # Site sitemap
+│   ├── robots.txt              # Search engine rules (Yandex, Google, Bing)
+│   ├── sitemap.xml             # Site sitemap
+│   └── site.webmanifest        # PWA manifest
 ├── src/
 │   ├── constants.ts            # Shared application constants
 │   ├── types/
@@ -200,7 +206,7 @@ svg-to-base64/
 - **App Router**: Uses Next.js App Router with React Server Components
 - **Client Components**: Interactive components marked with `"use client"` directive
 - **Server Components**: Static components rendered on the server for better performance
-- **Metadata API**: SEO metadata managed through Next.js Metadata API
+- **Metadata API**: SEO metadata and favicon icons managed through Next.js Metadata API
 - **Path Aliases**: `@/*` alias for clean imports from `src/` directory
 
 ## Troubleshooting
@@ -236,6 +242,7 @@ Created with ❤️ using React, Next.js, and Tailwind CSS
 - [Next.js](https://nextjs.org/) - The React framework for production
 - [React](https://react.dev/) - A JavaScript library for building user interfaces
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
+- [sharp](https://sharp.pixelplumbing.com/) - High-performance image processing for favicon generation
 
 ## Support This Project
 

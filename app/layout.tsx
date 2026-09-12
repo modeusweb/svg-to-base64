@@ -3,6 +3,18 @@ import './globals.css'
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://svg-to-base64.vercel.app'),
+  icons: {
+    icon: [
+      { url: '/favicon.ico', type: 'image/x-icon' },
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+    ],
+    apple: [
+      { url: '/favicon-180x180.png', sizes: '180x180', type: 'image/png' },
+    ],
+    other: [
+      { rel: 'mask-icon', url: '/favicon.svg', color: '#863bff' },
+    ],
+  },
   title: {
     default: 'SVG to Base64 Converter — Free Online Tool',
     template: '%s | SVG to Base64 Converter',
@@ -88,11 +100,10 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <link rel="apple-touch-icon" href="/favicon.svg" />
         <meta name="apple-mobile-web-app-title" content="SVG to Base64" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <link rel="manifest" href="/site.webmanifest" />
         <meta name="google-site-verification" content="w_s1YAdGDmNMm19tV4F6fl_4o15nDgnZGLM8ledX-f8" />
         <meta name="yandex-verification" content="95729f4220f4086c" />
         <script
