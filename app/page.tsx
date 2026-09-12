@@ -5,6 +5,7 @@ import { DONATION_WALLET_ADDRESS } from '@/constants'
 import { DonationCard } from '@/components/DonationCard'
 import { ErrorMessage } from '@/components/ErrorMessage'
 import { FileInfoCard } from '@/components/FileInfoCard'
+import { FAQ } from '@/components/FAQ'
 import { Footer } from '@/components/Footer'
 import { FormatSettingsCard } from '@/components/FormatSettingsCard'
 import { Header } from '@/components/Header'
@@ -77,6 +78,11 @@ function HomePage() {
             <InfoSection />
           </section>
         </div>
+
+        {/* FAQ - Full Width */}
+        <section className="mt-8 max-w-7xl mx-auto" aria-label="Frequently asked questions">
+          <FAQ />
+        </section>
 
         {/* Social Sharing */}
         <section className="mt-8 max-w-7xl mx-auto" aria-label="Share this tool">
