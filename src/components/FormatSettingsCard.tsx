@@ -1,3 +1,5 @@
+'use client'
+
 interface FormatSettingsCardProps {
   minify: boolean
   onMinifyChange: (minify: boolean) => void

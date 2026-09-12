@@ -1,3 +1,5 @@
+'use client'
+
 import { IconFile } from './icons'
 
 interface FileInfoCardProps {

@@ -1,10 +1,10 @@
 # SVG to Base64 Converter
 
-A modern web application that converts SVG files to multiple output formats with base64 encoding. Built with React, Vite, and Tailwind CSS.
+A modern web application that converts SVG files to multiple output formats with base64 encoding. Built with React, Next.js, and Tailwind CSS.
 
-![SVG to Base64 Converter](https://img.shields.io/badge/React-19.2.8-blue)
-![Vite](https://img.shields.io/badge/Vite-8.2.2-purple)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.3.3-38bdf8)
+![React](https://img.shields.io/badge/React-19.0.0-blue)
+![Next.js](https://img.shields.io/badge/Next.js-15.5.25-black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0.0-38bdf8)
 
 
 ## Demo
@@ -44,10 +44,16 @@ Try the live version here: **[svg-to-base64.vercel.app](https://svg-to-base64.ve
 - **Error Handling**: Clear error messages for invalid files or size limits
 - **Reset Functionality**: Easy reset to upload a new file
 
+### 🔍 SEO & Performance
+- **Server-Side Rendering (SSR)**: Full SSR support with Next.js App Router
+- **SEO Optimized**: Complete meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
+- **Static Generation**: Pages are pre-rendered at build time for optimal performance
+- **Fast Loading**: Optimized production build with code splitting
+
 ## Installation
 
 ### Prerequisites
-- Node.js (version 16 or higher)
+- Node.js (version 18 or higher)
 - npm or yarn
 
 ### Clone the Repository
@@ -66,14 +72,17 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:5173`
+The application will be available at `http://localhost:3000`
 
 ### Build for Production
 ```bash
 npm run build
 ```
 
-The optimized production build will be in the `dist` directory.
+### Start Production Server
+```bash
+npm run start
+```
 
 ## Usage
 
@@ -123,9 +132,9 @@ Select from three available output formats:
 
 ## Technical Stack
 
-- **React 19.2.8**: Modern React with hooks
-- **Vite 8.2.2**: Fast build tool and dev server
-- **Tailwind CSS 4.3.3**: Utility-first CSS framework
+- **Next.js 15.5.25**: React framework with SSR and static generation
+- **React 19.0.0**: Modern React with hooks
+- **Tailwind CSS 4.0.0**: Utility-first CSS framework
 - **TypeScript**: Type-safe development
 - **PostCSS**: CSS processing with @tailwindcss/postcss
 
@@ -140,58 +149,59 @@ Select from three available output formats:
 
 ```
 svg-to-base64/
+├── app/                        # Next.js App Router
+│   ├── globals.css             # Global styles (Tailwind)
+│   ├── layout.tsx              # Root layout with SEO metadata
+│   └── page.tsx                # Main page (client component)
 ├── public/
-│   ├── favicon.svg          # Site favicon
-│   ├── robots.txt           # Search engine rules
-│   └── sitemap.xml          # Site sitemap
+│   ├── favicon.svg             # Site favicon
+│   ├── og-image.png            # Open Graph image
+│   ├── robots.txt              # Search engine rules
+│   └── sitemap.xml             # Site sitemap
 ├── src/
-│   ├── App.tsx              # App shell / composition root
-│   ├── main.tsx             # Application entry point
-│   ├── style.css            # Tailwind CSS imports
-│   ├── vite-env.d.ts        # Vite client type declarations
-│   ├── constants.ts         # Shared application constants
+│   ├── constants.ts            # Shared application constants
 │   ├── types/
-│   │   └── index.ts         # Shared TypeScript types (OutputFormat)
+│   │   └── index.ts            # Shared TypeScript types (OutputFormat)
 │   ├── utils/
-│   │   └── svg.ts           # Pure SVG helpers: minify, base64, format
+│   │   └── svg.ts              # Pure SVG helpers: minify, base64, format
 │   ├── hooks/
-│   │   ├── useClipboard.ts      # Copy-to-clipboard with feedback state
-│   │   └── useSvgConverter.ts   # SVG conversion business logic
+│   │   ├── useClipboard.ts     # Copy-to-clipboard with feedback state
+│   │   └── useSvgConverter.ts  # SVG conversion business logic
 │   └── components/
-│       ├── Header.tsx           # Page header
-│       ├── UploadZone.tsx       # Drag & drop + file input
-│       ├── ErrorMessage.tsx     # Error notification
-│       ├── PreviewCard.tsx      # SVG preview with zoom controls
-│       ├── FileInfoCard.tsx     # Uploaded file info + reset
+│       ├── Header.tsx          # Page header
+│       ├── UploadZone.tsx      # Drag & drop + file input
+│       ├── ErrorMessage.tsx    # Error notification
+│       ├── PreviewCard.tsx     # SVG preview with zoom controls
+│       ├── FileInfoCard.tsx    # Uploaded file info + reset
 │       ├── FormatSettingsCard.tsx # Output settings (minify toggle)
-│       ├── ResultCard.tsx       # Output result, format tabs, copy/download
-│       ├── InfoSection.tsx      # Static SEO content
-│       ├── DonationCard.tsx     # Donation card with wallet address
-│       ├── Footer.tsx           # GitHub link
-│       └── icons.tsx            # Reusable inline SVG icons
-├── index.html               # HTML template
-├── package.json             # Dependencies and scripts
-├── tailwind.config.js       # Tailwind configuration
-├── tsconfig.json            # TypeScript configuration
-└── postcss.config.js        # PostCSS configuration
+│       ├── ResultCard.tsx      # Output result, format tabs, copy/download
+│       ├── InfoSection.tsx     # Static SEO content
+│       ├── DonationCard.tsx    # Donation card with wallet address
+│       ├── Footer.tsx          # GitHub link
+│       └── icons.tsx           # Reusable inline SVG icons
+├── next.config.ts              # Next.js configuration
+├── postcss.config.mjs          # PostCSS configuration
+├── tsconfig.json               # TypeScript configuration
+└── package.json                # Dependencies and scripts
 ```
 
 ## Development
 
 ### Available Scripts
 
-- `npm run dev` - Start development server
+- `npm run dev` - Start development server (http://localhost:3000)
 - `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
+- `npm run start` - Start production server
+- `npm run lint` - Run ESLint
 - `npm run typecheck` - Run TypeScript type checking (strict mode)
 
-### Adding New Features
+### Architecture
 
-The application is built with modern React patterns:
-- Functional components with hooks
-- useCallback for performance optimization
-- Clean separation of concerns
-- Responsive design with Tailwind CSS
+- **App Router**: Uses Next.js App Router with React Server Components
+- **Client Components**: Interactive components marked with `"use client"` directive
+- **Server Components**: Static components rendered on the server for better performance
+- **Metadata API**: SEO metadata managed through Next.js Metadata API
+- **Path Aliases**: `@/*` alias for clean imports from `src/` directory
 
 ## Troubleshooting
 
@@ -219,12 +229,12 @@ This project is open source and available under the MIT License.
 
 ## Author
 
-Created with ❤️ using React, Vite, and Tailwind CSS
+Created with ❤️ using React, Next.js, and Tailwind CSS
 
 ## Acknowledgments
 
+- [Next.js](https://nextjs.org/) - The React framework for production
 - [React](https://react.dev/) - A JavaScript library for building user interfaces
-- [Vite](https://vitejs.dev/) - Next generation frontend tooling
 - [Tailwind CSS](https://tailwindcss.com/) - A utility-first CSS framework
 
 ## Support This Project

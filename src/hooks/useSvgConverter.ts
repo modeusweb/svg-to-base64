@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useState } from 'react'
 import type { OutputFormat } from '../types'
 import { formatSvgOutput, minifySvg, svgToBase64 } from '../utils/svg'

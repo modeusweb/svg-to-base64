@@ -1,19 +1,21 @@
-import { useCallback } from 'react'
-import { DONATION_WALLET_ADDRESS } from './constants'
-import { DonationCard } from './components/DonationCard'
-import { ErrorMessage } from './components/ErrorMessage'
-import { FileInfoCard } from './components/FileInfoCard'
-import { Footer } from './components/Footer'
-import { FormatSettingsCard } from './components/FormatSettingsCard'
-import { Header } from './components/Header'
-import { InfoSection } from './components/InfoSection'
-import { PreviewCard } from './components/PreviewCard'
-import { ResultCard } from './components/ResultCard'
-import { UploadZone } from './components/UploadZone'
-import { useClipboard } from './hooks/useClipboard'
-import { useSvgConverter } from './hooks/useSvgConverter'
+'use client'
 
-function App() {
+import { useCallback } from 'react'
+import { DONATION_WALLET_ADDRESS } from '@/constants'
+import { DonationCard } from '@/components/DonationCard'
+import { ErrorMessage } from '@/components/ErrorMessage'
+import { FileInfoCard } from '@/components/FileInfoCard'
+import { Footer } from '@/components/Footer'
+import { FormatSettingsCard } from '@/components/FormatSettingsCard'
+import { Header } from '@/components/Header'
+import { InfoSection } from '@/components/InfoSection'
+import { PreviewCard } from '@/components/PreviewCard'
+import { ResultCard } from '@/components/ResultCard'
+import { UploadZone } from '@/components/UploadZone'
+import { useClipboard } from '@/hooks/useClipboard'
+import { useSvgConverter } from '@/hooks/useSvgConverter'
+
+function HomePage() {
   const converter = useSvgConverter()
   const resultClipboard = useClipboard()
   const walletClipboard = useClipboard()
@@ -87,4 +89,4 @@ function App() {
   )
 }
 
-export default App
+export default HomePage

@@ -1,3 +1,5 @@
+'use client'
+
 import type { OutputFormat } from '../types'
 import { IconCopy, IconDownload } from './icons'
 

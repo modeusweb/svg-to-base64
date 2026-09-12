@@ -1,3 +1,5 @@
+'use client'
+
 import { IconMinus, IconPlus } from './icons'
 
 const MIN_SCALE = 0.25

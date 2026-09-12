@@ -1,3 +1,5 @@
+'use client'
+
 import { useCallback, useState, type ChangeEvent, type DragEvent } from 'react'
 import { IconUpload } from './icons'
 

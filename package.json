@@ -2,12 +2,12 @@
   "name": "svg-to-base64",
   "version": "1.0.0",
   "description": "SVG to Base64 converter web application",
-  "main": "index.html",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "typecheck": "tsc --noEmit"
   },
   "repository": {
@@ -20,20 +20,18 @@
     "url": "https://github.com/modeusweb/svg-to-base64/issues"
   },
   "homepage": "https://svg-to-base64.vercel.app/",
-  "devDependencies": {
-    "@tailwindcss/postcss": "^4.3.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.7",
-    "@vitejs/plugin-react": "^6.1.1",
-    "autoprefixer": "^10.5.5",
-    "postcss": "^8.5.28",
-    "sharp": "^0.35.4",
-    "tailwindcss": "^4.3.3",
-    "typescript": "~6.0.2",
-    "vite": "^8.2.2"
-  },
   "dependencies": {
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8"
+    "next": "^15.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "autoprefixer": "^10.5.6",
+    "tailwindcss": "^4.0.0",
+    "typescript": "^5.7.0"
   }
 }

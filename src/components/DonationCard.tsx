@@ -1,3 +1,5 @@
+'use client'
+
 import { DONATION_WALLET_ADDRESS } from '../constants'
 import { IconCopy } from './icons'
 
