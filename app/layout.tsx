@@ -93,6 +93,7 @@ export default function RootLayout({
         <meta name="apple-mobile-web-app-title" content="SVG to Base64" />
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+        <meta name="google-site-verification" content="w_s1YAdGDmNMm19tV4F6fl_4o15nDgnZGLM8ledX-f8" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
