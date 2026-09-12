@@ -94,6 +94,7 @@ export default function RootLayout({
         <meta name="mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="default" />
         <meta name="google-site-verification" content="w_s1YAdGDmNMm19tV4F6fl_4o15nDgnZGLM8ledX-f8" />
+        <meta name="yandex-verification" content="95729f4220f4086c" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
