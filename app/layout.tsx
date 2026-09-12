@@ -8,7 +8,7 @@ export const metadata: Metadata = {
     template: '%s | SVG to Base64 Converter',
   },
   description:
-    'Free SVG to Base64 online converter: drag and drop an SVG file and instantly get Base64 strings, CSS background-image, or HTML img code with live preview. No sign-up needed.',
+    'Free SVG to Base64 online converter. Drag and drop SVG files to get Base64 strings, CSS background-image, or HTML img code instantly. No sign-up needed.',
   keywords: [
     'SVG to base64',
     'SVG converter',

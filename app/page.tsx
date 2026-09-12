@@ -10,7 +10,9 @@ import { FormatSettingsCard } from '@/components/FormatSettingsCard'
 import { Header } from '@/components/Header'
 import { InfoSection } from '@/components/InfoSection'
 import { PreviewCard } from '@/components/PreviewCard'
+import { Resources } from '@/components/Resources'
 import { ResultCard } from '@/components/ResultCard'
+import { SocialSharing } from '@/components/SocialSharing'
 import { UploadZone } from '@/components/UploadZone'
 import { useClipboard } from '@/hooks/useClipboard'
 import { useSvgConverter } from '@/hooks/useSvgConverter'
@@ -75,6 +77,20 @@ function HomePage() {
             <InfoSection />
           </section>
         </div>
+
+        {/* Social Sharing */}
+        <section className="mt-8 max-w-7xl mx-auto" aria-label="Share this tool">
+          <SocialSharing
+            url="https://svg-to-base64.vercel.app/"
+            title="SVG to Base64 Converter — Free Online Tool"
+            description="Free SVG to Base64 online converter. Drag and drop SVG files to get Base64 strings, CSS background-image, or HTML img code instantly."
+          />
+        </section>
+
+        {/* Resources & Useful Links */}
+        <section className="mt-8 max-w-7xl mx-auto" aria-label="Useful resources">
+          <Resources />
+        </section>
 
         {/* Donation Section - Full Width */}
         <aside className="mt-8">
