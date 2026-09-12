@@ -1,4 +1,18 @@
 User-agent: *
 Allow: /
+Disallow: /api/
 
+User-agent: Googlebot
+Allow: /
+Disallow: /api/
+
+User-agent: Bingbot
+Allow: /
+Disallow: /api/
+
+# Crawl-delay for all bots
+Crawl-delay: 1
+
+# Sitemap
 Sitemap: https://svg-to-base64.vercel.app/sitemap.xml
+

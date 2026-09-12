@@ -32,13 +32,13 @@ function HomePage() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900">
-      <div className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8">
         <Header />
 
         {/* Main Two-Column Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 max-w-7xl mx-auto">
           {/* Left Column - Upload & Preview */}
-          <div className="flex flex-col space-y-6">
+          <section className="flex flex-col space-y-6" aria-label="Upload and preview">
             <UploadZone onFileSelect={converter.handleFileSelect} />
             <ErrorMessage message={converter.error} />
             {converter.base64Url && (
@@ -54,10 +54,10 @@ function HomePage() {
                 onReset={converter.resetConverter}
               />
             )}
-          </div>
+          </section>
 
           {/* Right Column - Result & Settings */}
-          <div className="flex flex-col space-y-6">
+          <section className="flex flex-col space-y-6" aria-label="Result and settings">
             <FormatSettingsCard
               minify={converter.minifySvgMarkup}
               onMinifyChange={converter.updateSvgMarkupMinify}
@@ -73,18 +73,22 @@ function HomePage() {
               />
             )}
             <InfoSection />
-          </div>
+          </section>
         </div>
 
         {/* Donation Section - Full Width */}
-        <DonationCard
-          walletCopied={walletClipboard.copied}
-          onCopyWallet={handleCopyWallet}
-        />
+        <aside className="mt-8">
+          <DonationCard
+            walletCopied={walletClipboard.copied}
+            onCopyWallet={handleCopyWallet}
+          />
+        </aside>
+      </main>
 
-        {/* Footer */}
+      {/* Footer */}
+      <footer className="container mx-auto px-4">
         <Footer />
-      </div>
+      </footer>
     </div>
   )
 }

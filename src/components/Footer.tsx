@@ -3,7 +3,6 @@ import { IconGitHub } from './icons'
 export function Footer() {
   return (
     <div className="mt-12 text-center text-sm text-gray-500 dark:text-gray-400">
-      <p className="mb-4">Built with React + Vite + Tailwind CSS</p>
       <a
         href="https://github.com/modeusweb/svg-to-base64"
         target="_blank"

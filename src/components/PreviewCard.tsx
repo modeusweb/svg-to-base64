@@ -45,7 +45,7 @@ export function PreviewCard({ src, scale, onZoomChange }: PreviewCardProps) {
       <div className="w-full h-64 p-4 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 flex items-center justify-center bg-gray-50 dark:bg-gray-900 overflow-hidden">
         <img
           src={src}
-          alt="SVG Preview"
+          alt="Converted SVG preview - your uploaded file rendered as base64 encoded image"
           className="h-full max-w-full max-h-full object-contain transition-transform"
           style={{ transform: `scale(${scale})` }}
         />
