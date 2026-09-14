@@ -1,10 +1,11 @@
-# SVG to Base64 Converter
+# BaseVector
 
 A modern web application that converts SVG files to multiple output formats with base64 encoding. Built with React, Next.js, and Tailwind CSS.
 
 ![React](https://img.shields.io/badge/React-19.3.0-blue)
 ![Next.js](https://img.shields.io/badge/Next.js-16.3.5-black)
 ![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0.0-38bdf8)
+![BaseVector](https://img.shields.io/badge/BaseVector-v1.0.0-863bff)
 
 
 ## Demo
@@ -92,7 +93,7 @@ npm run start
 - **Click to Upload**: Click the upload zone and select your SVG file from the file dialog
 
 ### Step 2: Automatic Conversion
-The application automatically converts your SVG to base64 format and displays the output in your selected format.
+The BaseVector application automatically converts your SVG to base64 format and displays the output in your selected format.
 
 ### Step 3: Choose Output Format
 Select from three available output formats:
@@ -246,7 +247,7 @@ Created with ❤️ using React, Next.js, and Tailwind CSS
 
 ## Support This Project
 
-This tool is completely **free** and will always stay free. If it saved you some time and you'd like to support its development, consider buying me a coffee — every little bit helps keep this project running and improving. ☕
+BaseVector is completely **free** and will always stay free. If it saved you some time and you'd like to support its development, consider buying me a coffee — every little bit helps keep this project running and improving. ☕
 
 **USDT (TRC-20):** `TQZxZ2Ygh6RvkZDi5qswq8uF9KbDbDw9bo`
 

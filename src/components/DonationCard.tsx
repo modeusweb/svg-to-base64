@@ -24,7 +24,7 @@ export function DonationCard({ walletCopied, onCopyWallet }: DonationCardProps) 
             Enjoying this tool?
           </h3>
           <p className="text-gray-600 dark:text-gray-300 leading-relaxed text-sm mb-4">
-            This SVG converter is free and will always stay free. If it saved you
+            This BaseVector SVG converter is free and will always stay free. If it saved you
             some time, consider buying me a coffee — every little bit keeps
             this project running and improving. ☕
           </p>

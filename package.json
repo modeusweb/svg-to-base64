@@ -1,7 +1,7 @@
 {
-  "name": "svg-to-base64",
+  "name": "basevector",
   "version": "1.0.0",
-  "description": "SVG to Base64 converter web application",
+  "description": "BaseVector — Free SVG to Base64 converter web application",
   "type": "module",
   "scripts": {
     "dev": "next dev",

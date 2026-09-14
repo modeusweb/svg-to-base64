@@ -1,7 +1,7 @@
 {
-  "name": "SVG to Base64 Converter",
-  "short_name": "SVG→Base64",
-  "description": "Free online SVG to Base64 converter",
+  "name": "BaseVector — Free SVG to Base64 Converter",
+  "short_name": "BaseVector",
+  "description": "BaseVector — free online SVG to Base64 converter",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#ffffff",

@@ -88,8 +88,8 @@ function HomePage() {
         <section className="mt-8 max-w-7xl mx-auto" aria-label="Share this tool">
           <SocialSharing
             url="https://svg-to-base64.vercel.app/"
-            title="SVG to Base64 Converter — Free Online Tool"
-            description="Free SVG to Base64 online converter. Drag and drop SVG files to get Base64 strings, CSS background-image, or HTML img code instantly."
+            title="BaseVector — Free SVG to Base64 Converter"
+            description="BaseVector — free online SVG to Base64 converter. Drag and drop SVG files to get Base64 strings, CSS background-image, or HTML img code instantly."
           />
         </section>
 
