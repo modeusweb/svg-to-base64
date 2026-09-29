@@ -1,8 +1,17 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
+const SITE_URL = 'https://svg-to-base64.vercel.app'
+const APP_VERSION = '1.0.0'
+
 export const metadata: Metadata = {
-  metadataBase: new URL('https://svg-to-base64.vercel.app'),
+  metadataBase: new URL(SITE_URL),
+  manifest: '/site.webmanifest',
+  appleWebApp: {
+    capable: true,
+    title: 'BaseVector',
+    statusBarStyle: 'default',
+  },
   icons: {
     icon: [
       { url: '/favicon.ico', type: 'image/x-icon' },
@@ -48,18 +57,18 @@ export const metadata: Metadata = {
     },
   },
   alternates: {
-    canonical: 'https://svg-to-base64.vercel.app/',
+    canonical: `${SITE_URL}/`,
   },
   openGraph: {
     type: 'website',
     siteName: 'BaseVector',
-    url: 'https://svg-to-base64.vercel.app/',
+    url: `${SITE_URL}/`,
     title: 'BaseVector — Free SVG to Base64 Converter',
     description:
       'Convert SVG files to Base64 strings, CSS background-image, or HTML img code. Drag and drop, get ready-to-use code in multiple formats, copy with one click.',
     images: [
       {
-        url: 'https://svg-to-base64.vercel.app/og-image.png',
+        url: `${SITE_URL}/og-image.png`,
         type: 'image/png',
         width: 1200,
         height: 630,
@@ -77,7 +86,7 @@ export const metadata: Metadata = {
       'Convert SVG files to Base64 strings, CSS background-image, or HTML img code. Free, fast, no sign-up.',
     images: [
       {
-        url: 'https://svg-to-base64.vercel.app/og-image.png',
+        url: `${SITE_URL}/og-image.png`,
         alt: 'BaseVector — Free SVG to Base64 Converter',
       },
     ],
@@ -101,10 +110,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta name="apple-mobile-web-app-title" content="BaseVector" />
-        <meta name="mobile-web-app-capable" content="yes" />
-        <meta name="apple-mobile-web-app-status-bar-style" content="default" />
-        <link rel="manifest" href="/site.webmanifest" />
         <meta name="google-site-verification" content="w_s1YAdGDmNMm19tV4F6fl_4o15nDgnZGLM8ledX-f8" />
         <meta name="yandex-verification" content="95729f4220f4086c" />
         <script
@@ -114,13 +119,13 @@ export default function RootLayout({
               '@context': 'https://schema.org',
               '@type': 'WebApplication',
               name: 'BaseVector',
-              url: 'https://svg-to-base64.vercel.app/',
+              url: `${SITE_URL}/`,
               description:
                 'BaseVector — free online SVG to Base64 converter. Turns SVG files into base64-encoded data URIs, CSS background-image rules, and HTML img code.',
               applicationCategory: 'DeveloperApplication',
               operatingSystem: 'Any',
               browserRequirements: 'Requires JavaScript',
-              softwareVersion: '2.0.0',
+              softwareVersion: APP_VERSION,
               offers: {
                 '@type': 'Offer',
                 price: '0',

@@ -34,7 +34,9 @@ export function ResultCard({
         </h3>
         <div className="flex items-center gap-2">
           <button
+            type="button"
             onClick={onCopy}
+            aria-label="Copy result to clipboard"
             className={`px-4 py-2 rounded-lg transition-colors flex items-center gap-2 cursor-pointer text-sm ${
               copied
                 ? 'bg-green-600 hover:bg-green-700 text-white'
@@ -45,9 +47,11 @@ export function ResultCard({
             {copied ? 'Copied!' : 'Copy'}
           </button>
           <button
+            type="button"
             onClick={onDownload}
             className="px-4 py-2 rounded-lg bg-gray-600 hover:bg-gray-700 text-white transition-colors flex items-center gap-2 cursor-pointer text-sm"
             title="Download as file"
+            aria-label="Download result as a text file"
           >
             <IconDownload />
             Download
@@ -56,10 +60,13 @@ export function ResultCard({
       </div>
 
       {/* Format Tabs */}
-      <div className="flex gap-2 mb-4">
+      <div className="flex gap-2 mb-4" role="tablist" aria-label="Output format">
         {FORMAT_TABS.map((tab) => (
           <button
             key={tab.value}
+            type="button"
+            role="tab"
+            aria-selected={outputFormat === tab.value}
             onClick={() => onFormatChange(tab.value)}
             className={`px-4 py-2 rounded-lg transition-colors text-sm cursor-pointer ${
               outputFormat === tab.value

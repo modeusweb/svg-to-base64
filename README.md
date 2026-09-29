@@ -3,8 +3,8 @@
 A modern web application that converts SVG files to multiple output formats with base64 encoding. Built with React, Next.js, and Tailwind CSS.
 
 ![React](https://img.shields.io/badge/React-19.3.0-blue)
-![Next.js](https://img.shields.io/badge/Next.js-16.3.5-black)
-![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.0.0-38bdf8)
+![Next.js](https://img.shields.io/badge/Next.js-16.3.6-black)
+![Tailwind CSS](https://img.shields.io/badge/Tailwind-4.3.3-38bdf8)
 ![BaseVector](https://img.shields.io/badge/BaseVector-v1.0.0-863bff)
 
 
@@ -55,7 +55,7 @@ Try the live version here: **[svg-to-base64.vercel.app](https://svg-to-base64.ve
 ## Installation
 
 ### Prerequisites
-- Node.js (version 18 or higher)
+- Node.js (version 20.9 or higher)
 - npm or yarn
 
 ### Clone the Repository
@@ -199,7 +199,7 @@ svg-to-base64/
 - `npm run dev` - Start development server (http://localhost:3000)
 - `npm run build` - Build for production
 - `npm run start` - Start production server
-- `npm run lint` - Run ESLint
+- `npm run lint` - Run ESLint (flat config in `eslint.config.mjs`)
 - `npm run typecheck` - Run TypeScript type checking (strict mode)
 
 ### Architecture

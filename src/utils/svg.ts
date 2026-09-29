@@ -2,6 +2,16 @@ import type { OutputFormat } from '../types'
 
 const ENCODER_ATTR_RE = /\s(sodipodi|inkscape|sketch|figma|xmlns:(?:sodipodi|inkscape|sketch|figma|serif|dc|cc|rdf))[^\s=]*(?:="[^"]*"|='[^']*')?/g
 
+const SVG_ROOT_RE = /<svg[\s>]/i
+
+/**
+ * Cheap sanity check that the file really contains an SVG root element.
+ * Files renamed to .svg would otherwise produce a broken data URI.
+ */
+export function isSvgMarkup(source: string): boolean {
+  return SVG_ROOT_RE.test(source)
+}
+
 /**
  * Safely minifies SVG markup to a single line without breaking the icon.
  * - removes XML declaration, doctype and comments

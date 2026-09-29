@@ -20,18 +20,20 @@ import { useSvgConverter } from '@/hooks/useSvgConverter'
 
 function HomePage() {
   const converter = useSvgConverter()
-  const resultClipboard = useClipboard()
-  const walletClipboard = useClipboard()
+  const { copied: resultCopied, copy: copyToClipboard } = useClipboard()
+  const { copied: walletCopied, copy: copyWalletAddress } = useClipboard()
+
+  const { base64Result, setError } = converter
 
   const handleCopyResult = useCallback(async () => {
-    const ok = await resultClipboard.copy(converter.base64Result)
-    if (!ok) converter.setError('Error copying to clipboard')
-  }, [resultClipboard.copy, converter.base64Result, converter.setError])
+    const ok = await copyToClipboard(base64Result)
+    if (!ok) setError('Error copying to clipboard')
+  }, [copyToClipboard, base64Result, setError])
 
   const handleCopyWallet = useCallback(async () => {
-    const ok = await walletClipboard.copy(DONATION_WALLET_ADDRESS)
-    if (!ok) converter.setError('Error copying wallet address')
-  }, [walletClipboard.copy, converter.setError])
+    const ok = await copyWalletAddress(DONATION_WALLET_ADDRESS)
+    if (!ok) setError('Error copying wallet address')
+  }, [copyWalletAddress, setError])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-blue-50 to-pink-50 dark:from-gray-900 dark:via-purple-900 dark:to-blue-900">
@@ -69,7 +71,7 @@ function HomePage() {
               <ResultCard
                 result={converter.base64Result}
                 outputFormat={converter.outputFormat}
-                copied={resultClipboard.copied}
+                copied={resultCopied}
                 onFormatChange={converter.handleFormatChange}
                 onCopy={handleCopyResult}
                 onDownload={converter.downloadResult}
@@ -101,7 +103,7 @@ function HomePage() {
         {/* Donation Section - Full Width */}
         <aside className="mt-8">
           <DonationCard
-            walletCopied={walletClipboard.copied}
+            walletCopied={walletCopied}
             onCopyWallet={handleCopyWallet}
           />
         </aside>

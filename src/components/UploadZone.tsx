@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useState, type ChangeEvent, type DragEvent } from 'react'
+import { useCallback, useRef, useState, type ChangeEvent, type DragEvent, type KeyboardEvent } from 'react'
 import { IconUpload } from './icons'
 
 interface UploadZoneProps {
@@ -9,6 +9,8 @@ interface UploadZoneProps {
 
 export function UploadZone({ onFileSelect }: UploadZoneProps) {
   const [isDragging, setIsDragging] = useState(false)
+
+  const inputRef = useRef<HTMLInputElement>(null)
 
   const handleDragOver = useCallback((e: DragEvent<HTMLDivElement>) => {
     e.preventDefault()
@@ -33,14 +35,28 @@ export function UploadZone({ onFileSelect }: UploadZoneProps) {
   const handleFileInputChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const file = e.target.files?.[0]
+      // Reset the input so re-picking the same file fires change again.
+      e.target.value = ''
       if (file) onFileSelect(file)
     },
     [onFileSelect],
   )
 
+  const handleKeyDown = useCallback(
+    (e: KeyboardEvent<HTMLDivElement>) => {
+      if (e.key !== 'Enter' && e.key !== ' ') return
+      e.preventDefault()
+      inputRef.current?.click()
+    },
+    [],
+  )
+
   return (
     <div
-      className={`flex items-center justify-center relative border-3 border-dashed rounded-2xl p-8 text-center transition-all duration-300 cursor-pointer flex-1 ${
+      role="button"
+      tabIndex={0}
+      aria-label="Upload SVG file: drag and drop, or press Enter to browse"
+      className={`flex items-center justify-center relative border-3 border-dashed rounded-2xl p-8 text-center transition-all duration-300 cursor-pointer flex-1 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-purple-500 ${
         isDragging
           ? 'border-purple-500 bg-purple-50 dark:bg-purple-900/30 scale-105'
           : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-800 hover:border-purple-400 hover:shadow-lg'
@@ -48,13 +64,17 @@ export function UploadZone({ onFileSelect }: UploadZoneProps) {
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
+      onKeyDown={handleKeyDown}
     >
       <input
+        ref={inputRef}
         type="file"
         accept=".svg,image/svg+xml"
         onChange={handleFileInputChange}
         className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
         id="fileInput"
+        tabIndex={-1}
+        aria-hidden="true"
       />
 
       <div className="pointer-events-none">

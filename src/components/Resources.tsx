@@ -1,6 +1,15 @@
-export function Resources() {
-  const links = [
-    {
+interface LinkItem {
+  name: string
+  url: string
+}
+
+interface LinkSection {
+  category: string
+  items: LinkItem[]
+}
+
+const LINKS: LinkSection[] = [
+  {
       category: 'SVG Documentation',
       items: [
         { name: 'MDN: SVG Tutorial', url: 'https://developer.mozilla.org/en-US/docs/Web/SVG/Tutorial' },
@@ -33,13 +42,14 @@ export function Resources() {
     },
   ]
 
+export function Resources() {
   return (
     <article className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">
       <h2 className="text-xl font-bold text-gray-800 dark:text-white mb-4">
         Useful Resources for Web Developers
       </h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {links.map((section) => (
+        {LINKS.map((section) => (
           <div key={section.category}>
             <h3 className="text-sm font-semibold text-gray-800 dark:text-white mb-2">
               {section.category}

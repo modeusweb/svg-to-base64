@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 
 interface FAQItem {
   question: string
@@ -40,19 +40,29 @@ const faqData: FAQItem[] = [
   },
 ]
 
-function AccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: boolean; onToggle: () => void }) {
+interface AccordionItemProps {
+  item: FAQItem
+  isOpen: boolean
+  onToggle: () => void
+}
+
+function AccordionItem({ item, isOpen, onToggle }: AccordionItemProps) {
+  const panelId = `faq-panel-${item.question.replace(/\W+/g, '-').toLowerCase()}`
+
   return (
     <div className="border-b border-gray-200 dark:border-gray-700 last:border-b-0">
       <button
+        type="button"
         onClick={onToggle}
         className="w-full flex items-center justify-between py-4 text-left cursor-pointer"
         aria-expanded={isOpen}
+        aria-controls={panelId}
       >
         <span className="text-base font-medium text-gray-800 dark:text-white pr-4">
           {item.question}
         </span>
         <svg
-          className={`w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 ${isOpen ? 'rotate-180' : ''}`}
+          className={`w-5 h-5 text-gray-500 dark:text-gray-400 flex-shrink-0 transition-transform ${isOpen ? 'rotate-180' : ''}`}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -62,7 +72,9 @@ function AccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: bool
         </svg>
       </button>
       <div
-        className={`overflow-hidden ${isOpen ? 'pb-4' : 'hidden'}`}
+        id={panelId}
+        role="region"
+        className={isOpen ? 'pb-4' : 'hidden'}
       >
         <p className="text-sm text-gray-600 dark:text-gray-300 leading-relaxed">
           {item.answer}
@@ -75,9 +87,9 @@ function AccordionItem({ item, isOpen, onToggle }: { item: FAQItem; isOpen: bool
 export function FAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
-  const handleToggle = (index: number) => {
-    setOpenIndex(openIndex === index ? null : index)
-  }
+  const handleToggle = useCallback((index: number) => {
+    setOpenIndex((current) => (current === index ? null : index))
+  }, [])
 
   return (
     <article className="bg-white dark:bg-gray-800 rounded-xl p-6 shadow-lg">

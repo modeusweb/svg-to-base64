@@ -24,19 +24,29 @@ export function PreviewCard({ src, scale, onZoomChange }: PreviewCardProps) {
         </h3>
         <div className="flex items-center gap-2">
           <button
+            type="button"
             onClick={zoomOut}
-            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-gray-700 dark:text-gray-300 cursor-pointer"
+            disabled={scale <= MIN_SCALE}
+            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-gray-700 dark:text-gray-300 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             title="Zoom out"
+            aria-label="Zoom out"
           >
             <IconMinus />
           </button>
-          <span className="text-sm text-gray-600 dark:text-gray-400 min-w-[3rem] text-center">
+          <span
+            className="text-sm text-gray-600 dark:text-gray-400 min-w-[3rem] text-center"
+            role="status"
+            aria-live="polite"
+          >
             {Math.round(scale * 100)}%
           </span>
           <button
+            type="button"
             onClick={zoomIn}
-            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-gray-700 dark:text-gray-300 cursor-pointer"
+            disabled={scale >= MAX_SCALE}
+            className="p-2 rounded-lg bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 transition-colors text-gray-700 dark:text-gray-300 cursor-pointer disabled:opacity-40 disabled:cursor-not-allowed"
             title="Zoom in"
+            aria-label="Zoom in"
           >
             <IconPlus />
           </button>

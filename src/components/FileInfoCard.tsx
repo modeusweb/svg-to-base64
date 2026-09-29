@@ -25,7 +25,8 @@ export function FileInfoCard({ file, onReset }: FileInfoCardProps) {
           </div>
         </div>
         <button
-          onClick={onReset}
+        type="button"
+        onClick={onReset}
           className="px-4 py-2 text-sm text-gray-600 dark:text-gray-400 hover:text-gray-800 dark:hover:text-gray-200 transition-colors cursor-pointer"
         >
           Reset
