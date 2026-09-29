@@ -12,22 +12,6 @@ A modern web application that converts SVG files to multiple output formats with
 
 Try the live version here: **[modeusweb.github.io/svg-to-base64](https://modeusweb.github.io/svg-to-base64/)**
 
-## Deployment
-
-The site is a fully static Next.js export deployed to GitHub Pages via GitHub Actions
-(`.github/workflows/deploy.yml`). Pushing to `main` triggers a build and publish.
-
-Because GitHub Pages serves project sites from a sub-path, the build applies
-`basePath: /svg-to-base64`. Both values are configurable:
-
-| Variable | Default |
-| --- | --- |
-| `NEXT_PUBLIC_BASE_PATH` | `/svg-to-base64` |
-| `NEXT_PUBLIC_SITE_URL` | `https://modeusweb.github.io/svg-to-base64` |
-
-To serve from a custom domain or a root path, override them in the workflow `env` block
-and set `NEXT_PUBLIC_BASE_PATH` to an empty string.
-
 ## Features
 
 ### 🎯 Core Functionality
