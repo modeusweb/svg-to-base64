@@ -120,7 +120,6 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <meta name="google-site-verification" content="0D59jG7JMUj7sXOpK7E1--vZ0ptpdRe0TBSvBKaUGwM" />
-        <meta name="yandex-verification" content="56721fa25dcb1707" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

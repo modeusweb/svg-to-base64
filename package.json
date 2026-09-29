@@ -18,7 +18,7 @@
   "bugs": {
     "url": "https://github.com/modeusweb/svg-to-base64/issues"
   },
-  "homepage": "https://svg-to-base64.vercel.app/",
+  "homepage": "https://modeusweb.github.io/svg-to-base64/",
   "dependencies": {
     "next": "^16.3.6",
     "react": "^19.3.0",
