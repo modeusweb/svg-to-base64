@@ -2,18 +2,19 @@
   "name": "BaseVector — Free SVG to Base64 Converter",
   "short_name": "BaseVector",
   "description": "BaseVector — free online SVG to Base64 converter",
-  "start_url": "/",
+  "start_url": "/svg-to-base64/",
+  "scope": "/svg-to-base64/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#863bff",
   "icons": [
     {
-      "src": "/favicon-192x192.png",
+      "src": "/svg-to-base64/favicon-192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/favicon-512x512.png",
+      "src": "/svg-to-base64/favicon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }

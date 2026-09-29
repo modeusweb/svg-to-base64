@@ -10,7 +10,23 @@ A modern web application that converts SVG files to multiple output formats with
 
 ## Demo
 
-Try the live version here: **[svg-to-base64.vercel.app](https://svg-to-base64.vercel.app/)**
+Try the live version here: **[modeusweb.github.io/svg-to-base64](https://modeusweb.github.io/svg-to-base64/)**
+
+## Deployment
+
+The site is a fully static Next.js export deployed to GitHub Pages via GitHub Actions
+(`.github/workflows/deploy.yml`). Pushing to `main` triggers a build and publish.
+
+Because GitHub Pages serves project sites from a sub-path, the build applies
+`basePath: /svg-to-base64`. Both values are configurable:
+
+| Variable | Default |
+| --- | --- |
+| `NEXT_PUBLIC_BASE_PATH` | `/svg-to-base64` |
+| `NEXT_PUBLIC_SITE_URL` | `https://modeusweb.github.io/svg-to-base64` |
+
+To serve from a custom domain or a root path, override them in the workflow `env` block
+and set `NEXT_PUBLIC_BASE_PATH` to an empty string.
 
 ## Features
 
@@ -46,9 +62,8 @@ Try the live version here: **[svg-to-base64.vercel.app](https://svg-to-base64.ve
 - **Reset Functionality**: Easy reset to upload a new file
 
 ### 🔍 SEO & Performance
-- **Server-Side Rendering (SSR)**: Full SSR support with Next.js App Router
+- **Static Export**: Fully pre-rendered at build time and served as plain HTML/CSS/JS (no server runtime)
 - **SEO Optimized**: Complete meta tags, Open Graph, Twitter Cards, and JSON-LD structured data
-- **Static Generation**: Pages are pre-rendered at build time for optimal performance
 - **Fast Loading**: Optimized production build with code splitting
 - **Favicon**: Complete icon set for all browsers and devices (ICO, SVG, PNG, Apple Touch)
 
@@ -76,15 +91,19 @@ npm run dev
 
 The application will be available at `http://localhost:3000`
 
-### Build for Production
+### Build the Static Export
 ```bash
 npm run build
 ```
 
-### Start Production Server
+The export is written to `out/`. Serve it locally with any static file server, e.g.:
 ```bash
-npm run start
+npx serve out
 ```
+
+Note: `basePath` is `/svg-to-base64`, so local static preview requires serving from
+that sub-path (for example `npx serve out` with the folder mounted accordingly).
+`npm run dev` handles the prefix automatically.
 
 ## Usage
 
@@ -186,7 +205,8 @@ svg-to-base64/
 │       ├── DonationCard.tsx    # Donation card with wallet address
 │       ├── Footer.tsx          # GitHub link
 │       └── icons.tsx           # Reusable inline SVG icons
-├── next.config.ts              # Next.js configuration
+├── .github/workflows/deploy.yml   # GitHub Pages build & deploy
+├── next.config.ts              # Next.js configuration (static export, basePath)
 ├── postcss.config.mjs          # PostCSS configuration
 ├── tsconfig.json               # TypeScript configuration
 └── package.json                # Dependencies and scripts
@@ -197,8 +217,7 @@ svg-to-base64/
 ### Available Scripts
 
 - `npm run dev` - Start development server (http://localhost:3000)
-- `npm run build` - Build for production
-- `npm run start` - Start production server
+- `npm run build` - Build the static export into `out/`
 - `npm run lint` - Run ESLint (flat config in `eslint.config.mjs`)
 - `npm run typecheck` - Run TypeScript type checking (strict mode)
 

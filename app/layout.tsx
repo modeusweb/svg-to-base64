@@ -1,12 +1,21 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 
-const SITE_URL = 'https://svg-to-base64.vercel.app'
+const SITE_URL =
+  process.env.NEXT_PUBLIC_SITE_URL ?? 'https://modeusweb.github.io/svg-to-base64'
 const APP_VERSION = '1.0.0'
+
+// Next.js does not prefix metadata asset URLs with basePath on a static
+// export, so the sub-path is applied explicitly here.
+const BASE_PATH = process.env.NEXT_PUBLIC_BASE_PATH ?? '/svg-to-base64'
+
+function asset(path: string): string {
+  return `${BASE_PATH}${path}`
+}
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
-  manifest: '/site.webmanifest',
+  manifest: asset('/site.webmanifest'),
   appleWebApp: {
     capable: true,
     title: 'BaseVector',
@@ -14,14 +23,14 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: [
-      { url: '/favicon.ico', type: 'image/x-icon' },
-      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: asset('/favicon.ico'), type: 'image/x-icon' },
+      { url: asset('/favicon.svg'), type: 'image/svg+xml' },
     ],
     apple: [
-      { url: '/favicon-180x180.png', sizes: '180x180', type: 'image/png' },
+      { url: asset('/favicon-180x180.png'), sizes: '180x180', type: 'image/png' },
     ],
     other: [
-      { rel: 'mask-icon', url: '/favicon.svg', color: '#863bff' },
+      { rel: 'mask-icon', url: asset('/favicon.svg'), color: '#863bff' },
     ],
   },
   title: {

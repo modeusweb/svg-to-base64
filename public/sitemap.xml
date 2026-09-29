@@ -3,12 +3,12 @@
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://svg-to-base64.vercel.app/</loc>
+    <loc>https://modeusweb.github.io/svg-to-base64/</loc>
     <lastmod>2026-09-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
     <image:image>
-      <image:loc>https://svg-to-base64.vercel.app/og-image.png</image:loc>
+      <image:loc>https://modeusweb.github.io/svg-to-base64/og-image.png</image:loc>
       <image:title>BaseVector — Free SVG to Base64 Converter</image:title>
       <image:caption>BaseVector — free online tool to convert SVG files to Base64, CSS, and HTML formats</image:caption>
     </image:image>

@@ -18,7 +18,7 @@ Disallow: /api/
 Crawl-delay: 1
 
 # Favicon location hint for search engines
-Favicon: /favicon.ico
+Favicon: /svg-to-base64/favicon.ico
 
 # Sitemap
-Sitemap: https://svg-to-base64.vercel.app/sitemap.xml
+Sitemap: https://modeusweb.github.io/svg-to-base64/sitemap.xml
