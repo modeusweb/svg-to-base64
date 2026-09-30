@@ -73,7 +73,13 @@ npm install
 npm run dev
 ```
 
-The application will be available at `http://localhost:3000`
+The application will be available at `http://localhost:3000`.
+
+`next.config.ts` defaults `basePath` to `/svg-to-base64` for the GitHub Pages
+sub-path deployment. To develop without that prefix, create `.env.local`:
+```bash
+NEXT_PUBLIC_BASE_PATH=
+```
 
 ### Build the Static Export
 ```bash
@@ -190,6 +196,9 @@ svg-to-base64/
 │       ├── Footer.tsx          # GitHub link
 │       └── icons.tsx           # Reusable inline SVG icons
 ├── .github/workflows/deploy.yml   # GitHub Pages build & deploy
+├── scripts/                        # Utility scripts (favicon & og-image generation)
+│   ├── generate-favicon.mjs        # Rasterise favicon.svg into PNG/ICO sizes
+│   └── update-og-image.mjs         # Build public/og-image.png from favicon.svg
 ├── next.config.ts              # Next.js configuration (static export, basePath)
 ├── postcss.config.mjs          # PostCSS configuration
 ├── tsconfig.json               # TypeScript configuration

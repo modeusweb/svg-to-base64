@@ -42,13 +42,20 @@ export function UploadZone({ onFileSelect }: UploadZoneProps) {
     [onFileSelect],
   )
 
+  // The native input is visually hidden and opened programmatically, so it never
+  // takes focus: a focusable element inside an aria-hidden tree (or inside the
+  // role="button" wrapper) would break assistive technology.
+  const openFileDialog = useCallback(() => {
+    inputRef.current?.click()
+  }, [])
+
   const handleKeyDown = useCallback(
     (e: KeyboardEvent<HTMLDivElement>) => {
       if (e.key !== 'Enter' && e.key !== ' ') return
       e.preventDefault()
-      inputRef.current?.click()
+      openFileDialog()
     },
-    [],
+    [openFileDialog],
   )
 
   return (
@@ -65,13 +72,17 @@ export function UploadZone({ onFileSelect }: UploadZoneProps) {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       onKeyDown={handleKeyDown}
+      onClick={openFileDialog}
     >
+      {/* Kept in the DOM but out of the a11y tree and out of the tab order; the
+          wrapper above is the accessible control and triggers it on click/keyboard. */}
       <input
         ref={inputRef}
         type="file"
         accept=".svg,image/svg+xml"
         onChange={handleFileInputChange}
-        className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+        onClick={(e) => e.stopPropagation()}
+        className="hidden"
         id="fileInput"
         tabIndex={-1}
         aria-hidden="true"
